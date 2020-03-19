@@ -1,0 +1,32 @@
+
+{{!-- MUESTRA LA INFO DEL LIBRO --}}
+<h1>{{title}}</h1>
+{{#each author}}
+    <p>Written by: {{this.name}}</p>
+  {{else}}
+    <p>No author yet!</p>
+  {{/each}}
+<p>Summary: {{description}}</p>
+<p>Rating: {{rating}}/10</p>
+<a href="/books">Return</a>
+
+{{!-- FORMULARIO PARA METER COMENTARIOS --}}
+<p>Add a review</p>
+<form action="/reviews/add?book_id={{_id}}" method="post">
+  <label for="">User:</label>
+  <input type="text" name="user">
+
+  <label for="">Comments:</label>
+  <textarea type="text" name="comments"></textarea>
+
+  <button type="submit">ADD</button>
+</form>
+
+{{!-- MOSTRAR LOS COMENTARIOS DEL LIBRO --}}
+<h2>Reviews</h2>
+{{#each reviews}}
+<div class="review-item">
+  <p>{{this.comments}}</p>
+  <span>{{this.user}}</span>
+</div>
+{{/each}}
